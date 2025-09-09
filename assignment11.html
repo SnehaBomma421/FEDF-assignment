@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slideshow with Expand/Collapse</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+    }
+
+    /* Full-screen slideshow */
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .active-slide {
+      opacity: 1;
+    }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* Expand/Collapse sections */
+    .collapse-container {
+      max-width: 900px;
+      margin: 40px auto;
+      text-align: left;
+      padding: 0 20px;
+    }
+
+    .collapse-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+      padding: 15px 20px;
+    }
+
+    .collapse-btn {
+      background: linear-gradient(135deg, #6610f2, #6f42c1);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: transform 0.2s;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+    }
+
+    .collapse-btn:hover {
+      transform: scale(1.03);
+    }
+
+    .collapse-card p {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Full-Screen Slideshow -->
+  <div class="slideshow-container">
+    <img src="https://images.unsplash.com/photo-1455849318743-b2233052fcff?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YWJvdXQlMjBtZXxlbnwwfHwwfHx8MA%3D%3D" class="slide active-slide" alt="Slide 1">
+    <img src="https://images.unsplash.com/photo-1528747045269-390fe33c19f2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YWJvdXQlMjBtZXxlbnwwfHwwfHx8MA%3D%3D" class="slide" alt="Slide 2">
+    <div class="slide-caption">Welcome to My Portfolio</div>
+  </div>
+
+  <!-- Expand/Collapse Sections -->
+  <div class="collapse-container">
+    <div class="collapse-card">
+      <button class="collapse-btn mb-2" data-bs-toggle="collapse" data-bs-target="#section1">Section 1: About Me</button>
+      <div class="collapse" id="section1">
+        <p>Hi, I'm Sneha! I love coding, designing, and creating web projects that are interactive and fun. I enjoy learning new technologies every day.</p>
+      </div>
+    </div>
+
+    <div class="collapse-card">
+      <button class="collapse-btn mb-2" data-bs-toggle="collapse" data-bs-target="#section2">Section 2: Hobbies</button>
+      <div class="collapse" id="section2">
+        <p>I enjoy reading books, exploring new places, cooking, and experimenting with creative web designs and small projects.</p>
+      </div>
+    </div>
+
+    <div class="collapse-card">
+      <button class="collapse-btn mb-2" data-bs-toggle="collapse" data-bs-target="#section3">Section 3: Contact</button>
+      <div class="collapse" id="section3">
+        <p>You can reach me at: <strong>sneha@gmail.com</strong> or call me at <strong>+91 9876543210</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function showNextSlide() {
+      slides[currentSlide].classList.remove('active-slide');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active-slide');
+    }
+
+    setInterval(showNextSlide, 4000); // Change slide every 4 seconds
+  </script>
+</body>
+</html>
